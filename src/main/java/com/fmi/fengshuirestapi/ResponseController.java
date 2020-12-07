@@ -35,6 +35,12 @@ public class ResponseController {
 		return new Response("Astrology Allies", animalSign.getAstrologyAllies().toString());
 	}
 
+	@RequestMapping("/astrologyEnemy/{year}")
+	public Response astrologyEnemy(@PathVariable int year) {
+		AnimalSign animalSign = AnimalSign.valueOf(chineseYearSign(year).getContent());
+		return new Response("Astrology Enemy", animalSign.getEnemy().toString());
+	}
+
 	@RequestMapping("/kuaNumber/{year}/{gender}")
 	public Response kuaNumber(@PathVariable int year, @PathVariable Gender gender) {
 		KuaUtil kuaUtil = new KuaUtil(year, gender);
