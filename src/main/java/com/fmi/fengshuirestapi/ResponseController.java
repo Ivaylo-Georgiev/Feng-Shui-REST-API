@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fmi.fengshuirestapi.enums.AnimalSign;
+import com.fmi.fengshuirestapi.enums.Direction;
 import com.fmi.fengshuirestapi.enums.Gender;
 import com.fmi.fengshuirestapi.util.KuaUtil;
 
@@ -45,6 +46,13 @@ public class ResponseController {
 	public Response kuaNumber(@PathVariable int year, @PathVariable Gender gender) {
 		KuaUtil kuaUtil = new KuaUtil(year, gender);
 		return new Response("KUA Number", kuaUtil.execute());
+	}
+	
+	@RequestMapping("/luckyDirections/{year}/{gender}")
+	public Response luckyDirections(@PathVariable int year, @PathVariable Gender gender) {
+		KuaUtil kuaUtil = new KuaUtil(year, gender);
+		int kua = Integer.parseInt(kuaUtil.execute());
+		return new Response("Lucky Directions", Direction.getLuckyDirections(kua));
 	}
 
 }
