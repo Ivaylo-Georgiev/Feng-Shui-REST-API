@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fmi.fengshuirestapi.enums.AnimalSign;
+import com.fmi.fengshuirestapi.enums.Gender;
+import com.fmi.fengshuirestapi.util.KuaUtil;
 
 @RestController
 public class ResponseController {
@@ -14,7 +16,7 @@ public class ResponseController {
 		AnimalSign animalSign = AnimalSign.mapHourToSign(hour);
 		return new Response(animalSign.toString());
 	}
-	
+
 	@RequestMapping("/ChineseYearSign/{year}")
 	public Response chineseYearSign(@PathVariable int year) {
 		AnimalSign animalSign = AnimalSign.mapYearToSign(year);
@@ -31,6 +33,12 @@ public class ResponseController {
 	public Response astrologyAllies(@PathVariable int year) {
 		AnimalSign animalSign = AnimalSign.valueOf(chineseYearSign(year).getContent());
 		return new Response(animalSign.getAstrologyAllies().toString());
+	}
+
+	@RequestMapping("/kuaNumber/{year}/{gender}")
+	public Response kuaNumber(@PathVariable int year, @PathVariable Gender gender) {
+		KuaUtil kuaUtil = new KuaUtil(year, gender);
+		return new Response(kuaUtil.execute());
 	}
 
 }
