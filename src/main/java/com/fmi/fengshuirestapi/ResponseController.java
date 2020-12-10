@@ -62,4 +62,10 @@ public class ResponseController {
 		return new Response("Four Worst Directions", Direction.getFourWorstDirections(kua));
 	}
 
+	@RequestMapping("/peachBlossomAnimal/{year}")
+	public Response peachBlossomAnimal(@PathVariable int year) {
+		AnimalSign animalSign = AnimalSign.valueOf(chineseYearSign(year).getContent());
+		return new Response("Peach Blossom Animal", animalSign.getPeachBlossomAnimal());
+	}
+
 }
