@@ -47,12 +47,19 @@ public class ResponseController {
 		KuaUtil kuaUtil = new KuaUtil(year, gender);
 		return new Response("KUA Number", kuaUtil.execute());
 	}
-	
+
 	@RequestMapping("/luckyDirections/{year}/{gender}")
 	public Response luckyDirections(@PathVariable int year, @PathVariable Gender gender) {
 		KuaUtil kuaUtil = new KuaUtil(year, gender);
 		int kua = Integer.parseInt(kuaUtil.execute());
 		return new Response("Lucky Directions", Direction.getLuckyDirections(kua));
+	}
+
+	@RequestMapping("/unluckyDirections/{year}/{gender}")
+	public Response unluckyDirections(@PathVariable int year, @PathVariable Gender gender) {
+		KuaUtil kuaUtil = new KuaUtil(year, gender);
+		int kua = Integer.parseInt(kuaUtil.execute());
+		return new Response("Unlucky Directions", Direction.getUnluckyDirections(kua));
 	}
 
 }
