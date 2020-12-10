@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fmi.fengshuirestapi.enums.AnimalSign;
 import com.fmi.fengshuirestapi.enums.Direction;
 import com.fmi.fengshuirestapi.enums.Gender;
+import com.fmi.fengshuirestapi.util.BabyGenderUtil;
 import com.fmi.fengshuirestapi.util.KuaUtil;
 
 @RestController
@@ -66,6 +67,15 @@ public class ResponseController {
 	public Response peachBlossomAnimal(@PathVariable int year) {
 		AnimalSign animalSign = AnimalSign.valueOf(chineseYearSign(year).getContent());
 		return new Response("Peach Blossom Animal", animalSign.getPeachBlossomAnimal());
+	}
+
+	@RequestMapping("/babyGender/{fatherBirthYear}/{fatherBirthMonth}/{fatherBirthDay}/{motherBirthYear}/{motherBirthMonth}/{motherBirthDay}/{conceptionMonth}")
+	public Response peachBlossomAnimal(@PathVariable int fatherBirthYear, @PathVariable int fatherBirthMonth,
+			@PathVariable int fatherBirthDay, @PathVariable int motherBirthYear, @PathVariable int motherBirthMonth,
+			@PathVariable int motherBirthDay, @PathVariable int conceptionMonth) {
+		BabyGenderUtil babyGenderUtil = new BabyGenderUtil(fatherBirthYear, fatherBirthMonth, fatherBirthDay,
+				motherBirthYear, motherBirthMonth, motherBirthDay, conceptionMonth);
+		return new Response("Baby Gender", babyGenderUtil.determineBabyGender().toString());
 	}
 
 }
