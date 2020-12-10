@@ -13,36 +13,36 @@ public enum Direction {
 											Arrays.asList(2, 6, 7, 8)), SOUTH_WEST(Arrays.asList(2, 6, 7, 8),
 													Arrays.asList(1, 3, 4, 9));
 
-	private List<Integer> kuaNumbersWithLuckyDirection;
-	private List<Integer> kuaNumbersWithUnluckyDirection;
+	private List<Integer> kuaNumbersWithBestDirection;
+	private List<Integer> kuaNumbersWithWorstDirection;
 
-	private Direction(List<Integer> kuaNumbersWithLuckyDirection, List<Integer> kuaNumbersWithUnluckyDirection) {
-		this.kuaNumbersWithLuckyDirection = kuaNumbersWithLuckyDirection;
-		this.kuaNumbersWithUnluckyDirection = kuaNumbersWithUnluckyDirection;
+	private Direction(List<Integer> kuaNumbersWithBestDirection, List<Integer> kuaNumbersWithWorstDirection) {
+		this.kuaNumbersWithBestDirection = kuaNumbersWithBestDirection;
+		this.kuaNumbersWithWorstDirection = kuaNumbersWithWorstDirection;
 	}
 
-	public static String getLuckyDirections(int kuaNumber) {
-		String luckyDirections = "";
+	public static String getFourBestDirections(int kuaNumber) {
+		String fourBestDirections = "";
 		int i = 0;
 		for (Direction direction : Direction.values()) {
-			if (direction.kuaNumbersWithLuckyDirection.contains(kuaNumber)) {
-				luckyDirections += direction.name() + ((i < 3) ? "," : "");
+			if (direction.kuaNumbersWithBestDirection.contains(kuaNumber)) {
+				fourBestDirections += direction.name() + ((i < 3) ? "," : "");
 				++i;
 			}
 		}
-		return luckyDirections;
+		return fourBestDirections;
 	}
 
-	public static String getUnluckyDirections(int kuaNumber) {
-		String unluckyDirections = "";
+	public static String getFourWorstDirections(int kuaNumber) {
+		String fourWorstDirections = "";
 		int i = 0;
 		for (Direction direction : Direction.values()) {
-			if (direction.kuaNumbersWithUnluckyDirection.contains(kuaNumber)) {
-				unluckyDirections += direction.name() + ((i < 3) ? "," : "");
+			if (direction.kuaNumbersWithWorstDirection.contains(kuaNumber)) {
+				fourWorstDirections += direction.name() + ((i < 3) ? "," : "");
 				++i;
 			}
 		}
-		return unluckyDirections;
+		return fourWorstDirections;
 	}
 
 }
