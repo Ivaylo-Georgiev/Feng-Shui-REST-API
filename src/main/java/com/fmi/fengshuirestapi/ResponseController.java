@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fmi.fengshuirestapi.enums.AnimalSign;
 import com.fmi.fengshuirestapi.enums.Direction;
 import com.fmi.fengshuirestapi.enums.Gender;
+import com.fmi.fengshuirestapi.pojo.FengShuiDetails;
 import com.fmi.fengshuirestapi.util.BabyGenderUtil;
 import com.fmi.fengshuirestapi.util.KuaUtil;
 
@@ -76,6 +77,23 @@ public class ResponseController {
 		BabyGenderUtil babyGenderUtil = new BabyGenderUtil(fatherBirthYear, fatherBirthMonth, fatherBirthDay,
 				motherBirthYear, motherBirthMonth, motherBirthDay, conceptionMonth);
 		return new Response("Baby Gender", babyGenderUtil.determineBabyGender().toString());
+	}
+
+	@RequestMapping("/fengShuiDetails/{year}/{hour}/{gender}")
+	public FengShuiDetails fengShuiDetails(@PathVariable int year, @PathVariable int hour,
+			@PathVariable Gender gender) {
+		FengShuiDetails fengShuiDetails = new FengShuiDetails();
+		fengShuiDetails.setChineseYearSign(chineseYearSign(year).getContent());
+		fengShuiDetails.setChineseHourSign(chineseHourSign(hour).getContent());
+		fengShuiDetails.setSecretFriend(secretFriend(year).getContent());
+		fengShuiDetails.setAstrologyAllies(astrologyAllies(year).getContent());
+		fengShuiDetails.setAstrologyEnemy(astrologyEnemy(year).getContent());
+		fengShuiDetails.setPeachBlossomAnimal(peachBlossomAnimal(year).getContent());
+		fengShuiDetails.setKuaNumber(Integer.parseInt(kuaNumber(year, gender).getContent()));
+		fengShuiDetails.setFourBestDirections(fourBestDirections(year, gender).getContent());
+		fengShuiDetails.setFourWorstDirections(fourWorstDirections(year, gender).getContent());
+
+		return fengShuiDetails;
 	}
 
 }
