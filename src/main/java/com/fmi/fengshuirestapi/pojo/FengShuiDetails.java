@@ -6,7 +6,7 @@ public class FengShuiDetails {
 	private String chineseHourSign;
 	private String secretFriend;
 	private String astrologyAllies;
-	private String AstrologyEnemy;
+	private String astrologyEnemy;
 	private String peachBlossomAnimal;
 	private int kuaNumber;
 	private String fourBestDirections;
@@ -45,11 +45,11 @@ public class FengShuiDetails {
 	}
 
 	public String getAstrologyEnemy() {
-		return AstrologyEnemy;
+		return astrologyEnemy;
 	}
 
 	public void setAstrologyEnemy(String astrologyEnemy) {
-		AstrologyEnemy = astrologyEnemy;
+		this.astrologyEnemy = astrologyEnemy;
 	}
 
 	public String getPeachBlossomAnimal() {

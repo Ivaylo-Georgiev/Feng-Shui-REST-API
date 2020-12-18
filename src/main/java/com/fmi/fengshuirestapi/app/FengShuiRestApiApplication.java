@@ -1,4 +1,4 @@
-package com.fmi.fengshuirestapi;
+package com.fmi.fengshuirestapi.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

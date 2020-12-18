@@ -1,10 +1,10 @@
-package com.fmi.fengshuirestapi;
+package com.fmi.fengshuirestapi.pojo;
 
-public class Response {
+public class FengShuiResponse {
 	private final String contentType;
 	private final String content;
 
-	public Response(String contentType, String content) {
+	public FengShuiResponse(String contentType, String content) {
 		this.contentType = contentType;
 		this.content = content;
 	}
