@@ -12,6 +12,7 @@ import com.fmi.fengshuirestapi.util.BabyGenderUtil;
 import com.fmi.fengshuirestapi.util.KuaUtil;
 
 @RestController
+@CrossOrigin(origins = "http://13.59.137.69:3000")
 public class FengShuiResponseController {
 
 	@RequestMapping("/chineseHourSign/{hour}")
